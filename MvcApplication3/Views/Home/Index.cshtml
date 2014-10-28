@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<h2>Index</h2>
+
+<button attr="fileUpload1" id="btnChooseFile" class="btn btn-primary"> choose file</button>
+<input type="file" id="fileUpload1" name="fileUpload1" style="display:none" />
+<button type="button" id="btnSubmit" class="btn btn-primary">Upload</button>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/jquery.upload.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnChooseFile").click(function (event) {
+            $('#' + $(event.target).attr('attr')).click();
+        });
+
+        $('#btnSubmit').click(function () {
+            $.upload({
+                url: '/Home/Upload',
+                fileName: 'fileUpload1',
+                params: { name: 'pxblog' },
+                dataType: 'json',
+                onComplate: function (data) {
+                    alert(data);
+                }
+            });
+            $('form').submit();
+        });
+    });
+
+</script>
