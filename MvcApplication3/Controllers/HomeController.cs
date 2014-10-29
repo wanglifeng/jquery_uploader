@@ -18,7 +18,10 @@ namespace MvcApplication3.Controllers
 
         public ActionResult Upload()
         {
-            return new JsonResult() { Data = String.Format("File Count:{0}", Request.Files.Count) };
+            var content = String.Format("File Count:{0}", Request.Files.Count);
+            if(Request.Files.Count>0)
+                content += string.Format(" file Name:{0}",Request.Files[0].FileName);
+            return new JsonResult() { Data = content };
         }
 
     }
